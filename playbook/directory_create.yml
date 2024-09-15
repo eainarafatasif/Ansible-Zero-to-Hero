@@ -1,0 +1,10 @@
+---
+- name: Directory Module
+  hosts: all
+
+  tasks: 
+  - name: Createing a directory
+    file:
+     path: /var/www/html/myfolder
+     state: directory
+     

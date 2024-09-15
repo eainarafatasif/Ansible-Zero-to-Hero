@@ -1,0 +1,10 @@
+---
+- name: Allow HTTP on port 80
+  ufw:
+    rule: allow
+    port: '80'
+    proto: tcp
+
+- name: Ensure UFW is enabled
+  ufw:
+    state: enabled

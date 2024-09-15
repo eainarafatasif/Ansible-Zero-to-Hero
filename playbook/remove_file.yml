@@ -1,0 +1,12 @@
+---
+- name: File Module
+  hosts: all
+
+  tasks: 
+  - name: Createing a file
+    file:
+     path: /var/www/html/newfile.txt
+     state: absent
+     owner: ubuntu
+     group: ubuntu
+     mode: u=rwx,g=rw,o=r

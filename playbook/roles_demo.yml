@@ -1,0 +1,6 @@
+---
+- name: Install Nginx And firewall Enable
+  hosts: all
+  roles:
+   - pakage-install
+   - ufw-service

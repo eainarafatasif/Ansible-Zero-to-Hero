@@ -1,0 +1,45 @@
+---
+- name: Install and Start the services
+  hosts: all
+  become: yes
+
+  vars:
+    apps:
+      nginx:
+        state: present
+      mysql-server:
+        state: present
+      nodejs:
+        state: present
+      php8.2-cli:
+        state: present
+      php8.2-fpm:
+        state: present
+
+  tasks:
+    - name: Update apt package index
+      apt:
+        update_cache: yes
+      tags: i-update
+
+    - name: Add PHP PPA
+      apt_repository:
+        repo: ppa:ondrej/php
+        state: present
+      tags: i-update
+
+    - name: Install packages
+      apt:
+        name: "{{ item.key }}"
+        state: "{{ item.value.state }}"
+      loop: "{{ apps | dict2items }}"
+      tags: i-install
+
+    - name: Start services
+      service:
+        name: "{{ item.key }}"
+        state: started
+        enabled: true
+      loop: "{{ apps | dict2items }}"
+      when: item.key in ansible_facts.packages.keys()
+      tags: s-start

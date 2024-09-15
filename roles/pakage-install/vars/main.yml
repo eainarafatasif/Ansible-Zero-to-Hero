@@ -1,0 +1,5 @@
+---
+# vars file for pakage-install
+
+package:  nginx,mysql-server,nodejs,php8.2-cli,php8.2-fpm
+        

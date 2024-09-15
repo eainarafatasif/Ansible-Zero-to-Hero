@@ -1,0 +1,12 @@
+---
+- name: User Create
+  hosts: all
+
+  tasks:
+  - name: User Create
+    user:
+     name: nick
+     comment: new user adding for QA Team     #optional
+     shell: /bin/bash
+     state: absent
+     remove: yes                          # user all date remove

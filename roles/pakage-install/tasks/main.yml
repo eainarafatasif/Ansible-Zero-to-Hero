@@ -1,0 +1,18 @@
+---
+- name: Installing nginx
+  apt:
+    name: "{{ package }}"
+    state: present
+  tags: i-nginx
+
+- name: Copy file from controller to remote
+  copy:
+    src: newfile
+    dest: /var/www/html/
+
+- name: Starting the nginx service
+  service:
+    name: "{{ package }}"
+    state: started
+    enabled: true
+  tags: ss

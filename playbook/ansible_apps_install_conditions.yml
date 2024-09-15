@@ -1,0 +1,21 @@
+---
+- name: Installing Httpd
+  hosts: all
+
+  tasks:
+  - name: Install nginx on ubuntu
+    apt:
+     name: nginx
+     state: present
+    when: ansible_os_family == "ubuntu"
+
+  - name: Install nginx on Redhat 
+    yum: 
+       name: nginx
+       state: present
+    when: ansible_os_family == "Redhat" 
+
+
+# How to do't know my remote server whats OS use the command (ansible 192.168.0.108 -m setup) 
+
+

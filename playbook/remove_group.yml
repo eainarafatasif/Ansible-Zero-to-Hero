@@ -1,0 +1,9 @@
+---
+- name: Create a group on Ubuntu server
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure group 'developers' exists
+      group:
+        name: developers
+        state: absent

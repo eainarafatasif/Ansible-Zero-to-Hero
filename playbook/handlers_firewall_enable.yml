@@ -1,0 +1,17 @@
+---
+- name: Firewall changes
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Allow HTTP on port 80
+      ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
+      notify:
+       - Ensure UFW is enabled
+  handlers:    
+    - name: Ensure UFW is enabled
+      ufw:
+        state: enabled

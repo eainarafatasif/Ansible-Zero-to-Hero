@@ -1,0 +1,29 @@
+---
+- name: Install and Start the service
+  hosts: all
+  vars:
+   - app: nginx
+
+  tasks:
+   - name: Installing nginx
+     apt:
+        name: "{{ app }}"
+        state: present
+     tags: i-nginx
+
+   - name: Starting the nginx service
+     service:
+       name: "{{ app }}"
+       state: started
+       enabled: true
+     tags: ss
+
+
+
+
+
+# Check the tags (ansible-playbook app_install.yml --list-tags)
+# All tags but use Specific tags use like install nginx so. use this command(ansible-playbook app_install.yml -t {tag name} i-nginx
+# All Tags Like I have 10 Tags But Use 9 tag and skipped 1 tags so use the command(ansible-playbook app_install.yml --skip-tags ss-nginx) 
+
+

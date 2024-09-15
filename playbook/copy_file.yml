@@ -1,0 +1,11 @@
+---
+- name: Copying files to remote
+  hosts: all
+  tasks:
+    - name: Copy file from controller to remote
+      copy:
+        src: /var/www/html/myfile.txt  # Path on the controller
+        dest: /var/www/html/            # Destination path on the remote host
+        owner: ubuntu                   #Other User Permission
+        group: ubuntu                   # other group permission
+        mode: 0777                      # User Access File  Permission
